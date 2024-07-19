@@ -10,6 +10,80 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Kunjungan</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .table thead {
+            background-color: #343a40;
+            color: white;
+        }
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #bd2130;
+            border-color: #b21f2d;
+        }
+        .modal-header {
+            background-color: #dc3545;
+            color: white;
+        }
+        .modal-footer .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .modal-footer .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .alert {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 1050;
+        }
+        .btn-sm {
+            font-size: 0.875rem;
+        }
+        .table-filter {
+            margin-bottom: 20px;
+        }
+        .table-filter input {
+            width: 100%;
+            border-radius: 0.375rem;
+            border: 1px solid #ced4da;
+            padding: 0.5rem 1rem;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -20,7 +94,7 @@ session_start();
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-      <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="../home.php">Home</a>
         </li>
         <li class="nav-item">
@@ -46,8 +120,12 @@ session_start();
         </div>
         <?php unset($_SESSION['message']); ?>
     <?php endif; ?>
-    
-    <a href="tambahkunjungan.php" class="btn btn-primary mb-3">Tambah Kunjungan</a>
+
+    <div class="table-filter mb-3">
+        <input type="text" id="searchInput" placeholder="Search by ID Kunjungan" class="form-control">
+    </div>
+
+    <a href="tambahkunjungan.php" class="btn btn-primary mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Kunjungan"><i class="fas fa-plus"></i> Tambah Kunjungan</a>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -59,7 +137,7 @@ session_start();
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tableBody">
             <?php
             $no = 1;
             $hasil = $conn->query("SELECT * FROM kunjungan");
@@ -67,15 +145,14 @@ session_start();
             while ($row = $hasil->fetch_assoc()) {
             ?>
             <tr>
-                <td><?= $no++; ?></td>
                 <td><?= $row['idKunjungan']; ?></td>
                 <td><?= $row['idPasien']; ?></td>
                 <td><?= $row['idDokter']; ?></td>
                 <td><?= $row['tanggal']; ?></td>
                 <td><?= $row['keluhan']; ?></td>
                 <td>
-                    <a href="editskunjungan.php?id=<?= $row['idKunjungan']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="#" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $row['idKunjungan']; ?>)">Hapus</a>
+                    <a href="editkunjungan.php?id=<?= $row['idKunjungan']; ?>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $row['idKunjungan']; ?>)" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
             <?php } ?>
@@ -116,12 +193,33 @@ session_start();
         window.location.href = `hapuskunjungan.php?idKunjungan=${deleteId}`;
     });
 
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#tableBody tr');
+            rows.forEach(row => {
+                const id = row.cells[0].textContent.toLowerCase();
+                if (id.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltipTriggerList.forEach(tooltipTriggerEl => {
+          new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+
     <?php
     if (isset($_SESSION['deleted'])) {
         echo "alert('Data berhasil dihapus!');";
         unset($_SESSION['deleted']);
     }
     ?>
-    </script>
+</script>
 </body>
 </html>

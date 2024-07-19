@@ -9,6 +9,62 @@ session_start(); // Start the session to access session variables
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Dokter</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e9ecef;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .card-body {
+            background: #ffffff;
+        }
+        .btn-primary, .btn-secondary {
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+        .alert-dismissible {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1050;
+            width: 300px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -51,18 +107,20 @@ session_start(); // Start the session to access session variables
             <form action="proses_tambah_dokter.php" method="POST">
                 <div class="mb-3">
                     <label for="nmDokter" class="form-label">Nama Dokter:</label>
-                    <input type="text" class="form-control" id="nmDokter" name="nmDokter" required>
+                    <input type="text" class="form-control" id="nmDokter" name="nmDokter" placeholder="Masukkan nama dokter" required>
                 </div>
                 <div class="mb-3">
                     <label for="spesialisasi" class="form-label">Spesialisasi:</label>
-                    <input type="text" class="form-control" id="spesialisasi" name="spesialisasi" required>
+                    <input type="text" class="form-control" id="spesialisasi" name="spesialisasi" placeholder="Masukkan spesialisasi" required>
                 </div>
                 <div class="mb-3">
                     <label for="noTelp" class="form-label">No Telepon:</label>
-                    <input type="text" class="form-control" id="noTelp" name="noTelp" required>
+                    <input type="text" class="form-control" id="noTelp" name="noTelp" placeholder="Masukkan no telepon" required>
                 </div>
-                <a href="dokter.php" class="btn btn-primary">Tambah</a>
-                <a href="dokter.php" class="btn btn-secondary">Kembali</a>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <a href="dokter.php" class="btn btn-secondary">Kembali</a>
+                </div>
             </form>
         </div>
     </div>

@@ -1,4 +1,4 @@
-    <?php
+<?php
 include('db1.php');
 session_start();
 ?>
@@ -74,7 +74,7 @@ session_start();
                 <td><?= $row['tanggal']; ?></td>
                 <td><?= $row['keluhan']; ?></td>
                 <td>
-                    <a href="editkunjungan.php?id=<?= $row['idKunjungan']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="editskunjungan.php?id=<?= $row['idKunjungan']; ?>" class="btn btn-warning btn-sm">Edit</a>
                     <a href="#" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $row['idKunjungan']; ?>)">Hapus</a>
                 </td>
             </tr>

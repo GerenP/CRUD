@@ -15,9 +15,23 @@ session_start();
         body {
             font-family: 'Arial', sans-serif;
         }
+        .navbar {
+            background-color: #004d40; /* Dark teal */
+            padding: 1rem 2rem;
+        }
+
         .navbar-brand {
+            font-size: 1.8rem;
             font-weight: bold;
-            font-size: 1.5rem;
+            color: #ffffff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #00e676; /* Bright green */
         }
         .container {
             margin-top: 20px;
@@ -86,7 +100,7 @@ session_start();
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">MyApp</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

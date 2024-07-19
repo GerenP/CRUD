@@ -15,9 +15,23 @@ session_start(); // Start the session to access session variables
             font-family: 'Arial', sans-serif;
             background-color: #e9ecef;
         }
+        .navbar {
+            background-color: #004d40; /* Dark teal */
+            padding: 1rem 2rem;
+        }
+
         .navbar-brand {
+            font-size: 1.8rem;
             font-weight: bold;
-            font-size: 1.5rem;
+            color: #ffffff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #00e676; /* Bright green */
         }
         .container {
             margin-top: 30px;
@@ -67,30 +81,31 @@ session_start(); // Start the session to access session variables
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">MyApp</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="../home.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="dokter.php">Dokter</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../pasien/pasien.php">Pasien</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../kunjungan/kunjungan.php">Kunjungan</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">MyApp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../home.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="dokter.php">Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pasien/pasien.php">Patients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../kunjungan/kunjungan.php">Visits</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 <div class="container mt-4">
     <h2 class="mb-4">Tambah Dokter</h2>

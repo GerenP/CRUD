@@ -48,8 +48,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #f8f9fa;
         }
 
+        .navbar {
+            background-color: #004d40; /* Dark teal */
+            padding: 1rem 2rem;
+        }
+
         .navbar-brand {
+            font-size: 1.8rem;
             font-weight: bold;
+            color: #ffffff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #00e676; /* Bright green */
         }
 
         .container {
@@ -93,10 +108,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">MyApp</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -105,13 +121,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <a class="nav-link" href="../home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="dokter.php">Dokter</a>
+                        <a class="nav-link active" aria-current="page" href="dokter.php">Doctors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../pasien/pasien.php">Pasien</a>
+                        <a class="nav-link" href="../pasien/pasien.php">Patients</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../kunjungan/kunjungan.php">Kunjungan</a>
+                        <a class="nav-link" href="../kunjungan/kunjungan.php">Visits</a>
                     </li>
                 </ul>
             </div>

@@ -3,12 +3,13 @@ include('db1.php');
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $idKunjungan = $_POST["idKunjungan"];
     $idPasien = $_POST["idPasien"];
     $idDokter = $_POST["idDokter"];
     $tanggal = $_POST["tanggal"];
     $keluhan = $_POST["keluhan"];
 
-    $sql = "INSERT INTO kunjungan (idPasien, idDokter, tanggal, keluhan) VALUES ('$idPasien', '$idDokter', '$tanggal', '$keluhan')";
+    $sql = "INSERT INTO kunjungan (idKunjungan, idPasien, idDokter, tanggal, keluhan) VALUES ('$idKunjungan', '$idPasien', '$idDokter', '$tanggal', '$keluhan')";
 
     if ($conn->query($sql) === TRUE) {
         $_SESSION['message'] = "Data kunjungan berhasil ditambahkan.";
